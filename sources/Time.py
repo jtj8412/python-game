@@ -1,7 +1,7 @@
 
 import time
 
-
+# 시간 관련 변수 및 상수
 class Time:
     fps = 30
     deltaTime = 0

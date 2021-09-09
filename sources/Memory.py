@@ -1,6 +1,7 @@
 
 import sys
 
+# 점수 관련 저장 및 불러오기 클래스
 
 class Memory:
     current_score = 0

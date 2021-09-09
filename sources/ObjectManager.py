@@ -4,7 +4,7 @@ from sources.Object import *
 from sources.Layer import *
 from sources.Value import *
 
-
+# 모든 오브젝트를 관리하는 클래스
 class ObjectManager:
 
     obj_list = []

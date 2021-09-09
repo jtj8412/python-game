@@ -6,7 +6,7 @@ from sources.ObjectManager import *
 from sources.Value import Value
 from sources.Time import Time
 
-
+# 오브젝트 (상속용)
 class Object:
     _images = {}
 
@@ -52,6 +52,7 @@ class Object:
     def KeyEvent(self, events):
         pass
 
+    # 가속도만큼 속도 증가 / 속도만큼 위치 변경
     def Physics(self):
         self.SpeedX(self.GetAccelX() * Time.deltaTime)
         self.SpeedY(self.GetAccelY() * Time.deltaTime)
@@ -60,6 +61,7 @@ class Object:
         self.TranslateX(self.GetSpeedX() * Time.deltaTime)
         self.TranslateY(self.GetSpeedY() * Time.deltaTime)
 
+    # 충돌체가 겹쳤을 때 밀어내기
     def Restitute(self, obj):
         if not self.IsPhysics() or obj.IsTrigger() or self.IsTrigger():
             return
@@ -113,6 +115,7 @@ class Object:
             return
         self.GetCurrentSprite().Render(screen, self)
 
+    # 충돌체 크기 확인 (디버그용)
     def DebugRender(self, screen):
         x = self.GetXpos() - (self.GetRectX() * self.GetPivotX() / 100) + self.GetRectOffsetX()
         y = self.GetYpos() - (self.GetRectY() * self.GetPivotY() / 100) + self.GetRectOffsetY()

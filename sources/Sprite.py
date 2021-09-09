@@ -3,7 +3,7 @@ import pygame
 from sources.Value import Value
 from sources.Time import Time
 
-
+# 이미지 관련 처리 클래스
 class Sprite:
     images = []
     duration = 0.25

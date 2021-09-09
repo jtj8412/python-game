@@ -1,7 +1,7 @@
 
 from sources.Time import *
 
-
+# 전역 변수 및 함수
 class Value:
     TITLE_NAME = "Cookie Run"
     SCREEN_SIZE = (1280, 720)

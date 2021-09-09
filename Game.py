@@ -19,6 +19,7 @@ clock = pygame.time.Clock()
 #####################################################################
 #####################################################################
 
+# 클래스 초기화
 def Init():
     pygame.font.init()
     pygame.mixer.init()
@@ -40,7 +41,7 @@ def Init():
     Decoration.Init()
     Prize.Init()
 
-
+# 오브젝트 생성
 def InitGame():
     ObjectManager.AddObject(Player(), "Player").Enable()
     ObjectManager.AddObject(HP_Frame(), "HP_Frame").Enable()
@@ -72,7 +73,7 @@ def InitGame():
         ObjectManager.AddObject(Decoration(), "Decoration" + str(i))
     ObjectManager.AddObject(Prize(), "Prize")
 
-
+# 시작화면
 def Main():
     image = pygame.image.load("imgs/main.jpg").convert()
     image = pygame.transform.scale(image, (Value.SCREEN_SIZE[0], Value.SCREEN_SIZE[1]))
@@ -91,7 +92,7 @@ def Main():
                 Value.isRun = False
                 return
 
-
+# 게임오버 후 재시작
 def Reset():
     global trap_num, pixel_cnt, prev_delay
     ObjectManager.Clear()
@@ -111,7 +112,7 @@ pixel_cnt = 0
 prev_num = 0
 prev_trap_cycle = 6
 
-
+# 게임 로직
 def Update():
     global pixel_cnt, trap_num, prev_num, prev_trap_cycle
 
@@ -126,7 +127,7 @@ def Update():
         Value.move_dist = Value.diff
         pixel_cnt += 1
         if pixel_cnt == Value.TRAP_CYCLE:
-            ###### TRAP ######
+            
             if trap_num == 0:
                 ObjectManager.FindDisabled("Barrier")
             elif trap_num == 1:
@@ -151,7 +152,7 @@ def Update():
                 ObjectManager.FindDisabled("Stone")
             elif trap_num == 8:
                 ObjectManager.FindDisabled("Niddle").SetNum(1)
-            ###### TRAP ######
+            
             pixel_cnt = -TRAP_DELAY[trap_num]
             prev_num = trap_num
             trap_num = int(random.randrange(0, len(TRAP_DELAY)))
@@ -172,7 +173,7 @@ while Value.isRun:
     Main()
     InitGame()
     Time.Init()
-    while Value.isGame:
+    while Value.isGame: # KeyEvent -> Physcis -> Update -> Render
         ObjectManager.KeyEvent(pygame.event.get())
         ObjectManager.Physics()
         Update()
