@@ -5,7 +5,6 @@ import time
 class Time:
     fps = 30
     deltaTime = 0
-    over_deltaTime = 0
     prev_time = 0
     current_time = 0
 

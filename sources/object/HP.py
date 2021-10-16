@@ -17,7 +17,7 @@ class HP(Object):
         self.SetTag("HP")
         self.SetPivot([0, 0])
         self.SetPos([2, 2])
-        self.SetSpeedX(-Value.hp_minus)
+        self.SetSpeedX(-Value.hp_reduce_speed)
 
     def Damage(self, value):
         self.TranslateX(-value)

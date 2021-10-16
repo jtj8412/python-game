@@ -120,7 +120,7 @@ class Object:
         x = self.GetXpos() - (self.GetRectX() * self.GetPivotX() / 100) + self.GetRectOffsetX()
         y = self.GetYpos() - (self.GetRectY() * self.GetPivotY() / 100) + self.GetRectOffsetY()
         w, h = self.GetRectX(), self.GetRectY()
-        pygame.draw.rect(screen, Value.color_key, [x, y, w, h], 2)
+        pygame.draw.rect(screen, Value.COLOR_KEY, [x, y, w, h], 2)
 
     @staticmethod
     def AddImage_(file_name, image_name="Default"):

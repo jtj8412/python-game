@@ -3,20 +3,21 @@ from sources.Time import *
 
 # 전역 변수 및 함수
 class Value:
-    TITLE_NAME = "Cookie Run"
-    SCREEN_SIZE = (1280, 720)
-    color_key = (14, 209, 69)
+    TITLE_NAME = "Cookie Run" # window title name
+    SCREEN_SIZE = (1280, 720) # window size
+    COLOR_KEY = (14, 209, 69) # alpha color
+
     pixel = 128.0
     TRAP_CYCLE = 6
 
     game_speed = 600.0
-    hp_minus = 15
+    
+    hp_reduce_speed = 15
 
     gravity = 4000
     max_speedY = 1300.0
 
     move_dist = 130
-    diff = 0
 
     background_color = 255
 
@@ -28,11 +29,10 @@ class Value:
     @staticmethod
     def Reset():
         Value.move_dist = 130
-        Value.diff = 0
         Value.game_speed = 600.0
 
     @staticmethod
     def GetSummonXpos():
-        return Value.SCREEN_SIZE[0] - Value.diff + Value.game_speed * Time.deltaTime
+        return Value.SCREEN_SIZE[0] + Value.game_speed * Time.deltaTime
 
 

@@ -10,12 +10,12 @@ from sources.Memory import *
 
 class Game:
     #################### Member Variable ####################
-    TRAP_DELAY = [1, 3, 3, 5, 6, 9, 5, 7, 1]
+    TRAP_DELAY = (1, 3, 3, 5, 6, 9, 5, 7, 1)
     screen = pygame.display.set_mode(Value.SCREEN_SIZE)
     clock = pygame.time.Clock()
     trap_num = random.randrange(0, len(TRAP_DELAY))
+    prev_trap_num = 0
     pixel_cnt = 0
-    prev_num = 0
     prev_trap_cycle = 6
 
     #################### Initialize Class #################### 
@@ -43,13 +43,17 @@ class Game:
 
     #################### Initialize Game(Object) ####################
     def InitGame(self):
-        ObjectManager.AddObject(Player(), "Player").Enable()
+        # UI
         ObjectManager.AddObject(HP_Frame(), "HP_Frame").Enable()
         ObjectManager.AddObject(HP(), "HP").Enable()
+        ObjectManager.AddObject(Score(), "Score").Enable()
+        ObjectManager.AddObject(Prize(), "Prize")
+        # Background
         ObjectManager.AddObject(Background(), "Background0").Enable()
         ObjectManager.AddObject(Background(), "Background1").Enable()
-        ObjectManager.AddObject(Score(), "Score").Enable()
-
+        # Player
+        ObjectManager.AddObject(Player(), "Player").Enable()
+        # Object
         for i in range(10):
             obj = ObjectManager.AddObject(Bottom(), "Bottom" + str(i)).Enable()
             obj.SetXpos(i * Value.pixel)
@@ -71,14 +75,16 @@ class Game:
             ObjectManager.AddObject(Heal(), "Heal" + str(i))
         for i in range(5):
             ObjectManager.AddObject(Decoration(), "Decoration" + str(i))
-        ObjectManager.AddObject(Prize(), "Prize")
-
+        
     #################### Start Screen ####################
     def StartScreen(self):
+        # Image
         image = pygame.image.load("imgs/main.jpg").convert()
         image = pygame.transform.scale(image, (Value.SCREEN_SIZE[0], Value.SCREEN_SIZE[1]))
+        # Music
         pygame.mixer.music.load("sounds/main.ogg")
         pygame.mixer.music.play()
+        # Wait
         while True:
             self.screen.blit(image, [0, 0])
             pygame.display.update()
@@ -94,12 +100,13 @@ class Game:
 
     #################### Reset Game #################### 
     def Reset(self):
+        # Class Reset
         ObjectManager.Clear()
-        self.trap_num = random.randrange(0, len(self.TRAP_DELAY))
-        self.pixel_cnt = 0
-        self.prev_delay = 0
         Value.Reset()
         Memory.Init()
+        # Value Reset
+        self.pixel_cnt = 0
+        self.prev_delay = 0
 
     #################### Update Logic ####################
     def Update(self):
@@ -114,6 +121,7 @@ class Game:
             Value.move_dist = Value.diff
             self.pixel_cnt += 1
             if self.pixel_cnt == Value.TRAP_CYCLE:
+                self.trap_num = int(random.randrange(0, len(self.TRAP_DELAY)))
                 
                 if self.trap_num == 0:
                     ObjectManager.FindDisabled("Barrier")
@@ -134,17 +142,16 @@ class Game:
                     obj = ObjectManager.FindDisabled("Wall")
                     ObjectManager.FindDisabled("Wall").SetXpos(obj.GetXpos() + Value.pixel * 3)
                 elif self.trap_num == 6:
-                    ObjectManager.FindDisabled("Missile").TranslateX(self.TRAP_DELAY[self.prev_num] * 110)
+                    ObjectManager.FindDisabled("Missile").TranslateX(self.TRAP_DELAY[self.prev_trap_num] * 110)
                 elif self.trap_num == 7:
                     ObjectManager.FindDisabled("Stone")
                 elif self.trap_num == 8:
                     ObjectManager.FindDisabled("Niddle").SetNum(1)
                 
                 self.pixel_cnt = -self.TRAP_DELAY[self.trap_num]
-                self.prev_num = self.trap_num
-                self.trap_num = int(random.randrange(0, len(self.TRAP_DELAY)))
+                self.prev_trap_num = self.trap_num
 
-            if self.pixel_cnt >= 0 or self.prev_num == 6 or self.prev_num == 7:
+            if self.pixel_cnt >= 0 or self.prev_trap_num == 6 or self.prev_trap_num == 7:
                 ObjectManager.FindDisabled("Bottom")
                 if random.randrange(0, 30) == 0:
                     ObjectManager.FindDisabled("Heal")

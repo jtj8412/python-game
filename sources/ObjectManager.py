@@ -81,7 +81,6 @@ class ObjectManager:
                 if obj.IsEnable():
                     obj.Render(screen)
         if Value.isDebug:
-            print(Time.deltaTime + Time.over_deltaTime)
             for layer in range(Layer.Length):
                 for obj in ObjectManager.obj_list[layer].values():
                     if not obj.IsEnable():
