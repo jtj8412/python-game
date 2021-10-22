@@ -16,7 +16,6 @@
 
 ## Game  
 
-### Control  
 스페이스바 키로 점프만 사용하여 게임을 즐길 수 있습니다.
 
 ## Youtube :movie_camera:  
