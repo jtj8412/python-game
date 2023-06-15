@@ -1,6 +1,6 @@
-# CrazyArcade3D Game
+# Python Game
 
-![Main Screenshot](https://jtj8412.github.io/resources/imgs/python-game/main.png)
+![Main Screenshot](imgs/main.png)
 
 ## Introduction
 
