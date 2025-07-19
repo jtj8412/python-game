@@ -234,7 +234,7 @@ class Object:
         self.isTrigger = True
 
     def SetTriggerOff(self):
-        set.isTrigger = False
+        self.isTrigger = False
 
     def SetMass(self, mass):
         self.mass = mass
