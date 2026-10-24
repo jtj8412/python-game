@@ -48,7 +48,7 @@ class Player(Object):
         self.SetState("Run")
 
     def Start(self):
-        pygame.mixer.music.load("sounds/bgm.mp3")
+        pygame.mixer.music.load("sounds/bgm.wav")
         pygame.mixer.music.play()
 
     def KeyEvent(self, events):

@@ -15,7 +15,7 @@ class Heal(Object):
         Object.AddImage_("imgs/heal/1.png", "Heal1")
         Object.AddImage_("imgs/heal/2.png", "Heal2")
         Object.AddImage_("imgs/heal/3.png", "Heal3")
-        Object.sounds.update({"Heal": pygame.mixer.Sound("sounds/heal.ogg")})
+        Object.sounds.update({"Heal": pygame.mixer.Sound("sounds/heal.wav")})
         Object.sounds["Heal"].set_volume(1)
 
     def __init__(self):

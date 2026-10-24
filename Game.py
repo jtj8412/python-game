@@ -82,7 +82,7 @@ class Game:
         image = pygame.image.load("imgs/main.jpg").convert()
         image = pygame.transform.scale(image, (Value.SCREEN_SIZE[0], Value.SCREEN_SIZE[1]))
         # Music
-        pygame.mixer.music.load("sounds/main.ogg")
+        pygame.mixer.music.load("sounds/main.wav")
         pygame.mixer.music.play()
         # Wait
         while True:

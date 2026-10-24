@@ -35,7 +35,7 @@ class HP(Object):
     def Render(self, screen):
         super().Render(screen)
         if Value.gameover:
-            font = pygame.font.Font('ariblk.ttf', 40)
+            font = pygame.font.Font(None, 40)
             surf = font.render("Gameover", True, [255, 255, 255])
             rect = surf.get_rect()
             rect.center = (Value.SCREEN_SIZE[0] / 2, Value.SCREEN_SIZE[1] / 2)

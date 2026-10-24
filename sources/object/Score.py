@@ -7,7 +7,7 @@ from sources.Memory import *
 class Score(Object):
 
     pygame.font.init()
-    font = pygame.font.Font('ariblk.ttf', 20)
+    font = pygame.font.Font(None, 20)
     surf1 = font.render("Score : ", True, [255, 255, 255])
     rect1 = None
     surf2 = font.render("HighScore : ", True, [255, 255, 255])
